@@ -33,6 +33,7 @@ export function Header() {
     { name: "Platform Overview", href: "/platform-overview" },
     { name: "Pricing", href: "#pricing" },
     { name: "Blog", href: "#" },
+    { name: "Startup Catalogue", href: "/catalogue" },
   ]
 
   return (

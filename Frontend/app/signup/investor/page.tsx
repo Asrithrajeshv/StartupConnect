@@ -14,6 +14,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { ArrowLeft, ArrowRight, Link2 } from "lucide-react"
 import { PageBackground } from "@/components/page-background"
 import { Header } from "@/components/header"
+import { useRouter } from 'next/navigation'
 
 export default function InvestorSignupPage() {
   const [formData, setFormData] = useState({
@@ -30,6 +31,8 @@ export default function InvestorSignupPage() {
 
   const [selectedIndustries, setSelectedIndustries] = useState<string[]>([])
   const [step, setStep] = useState(1)
+
+  const router = useRouter()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -87,6 +90,18 @@ export default function InvestorSignupPage() {
       currency: "USD",
       maximumFractionDigits: 0,
     }).format(value)
+  }
+
+  const handleSignupSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    // ... your existing signup logic ...
+
+    try {
+      // After successful signup
+      router.push('/investor/marketplace')
+    } catch (error) {
+      console.error('Signup failed:', error)
+    }
   }
 
   return (
