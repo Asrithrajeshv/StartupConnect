@@ -14,6 +14,8 @@ import {
   BarChart,
   Users,
   LayoutGrid,
+  MessageSquare,
+  TrendingUp,
 } from "lucide-react"
 import { HeroBackground } from "@/components/hero-background"
 import { TypewriterEffect } from "@/components/typewriter-effect"
@@ -62,8 +64,8 @@ export default function Home() {
           </div>
 
           <p className="text-gray-300 max-w-3xl mx-auto text-lg">
-            Our AI platform connects startups with investors, forecasts business success, and implements dynamic funding
-            models based on your actual performance.
+            Our AI platform connects startups with investors, provides real-time business insights, and implements
+            dynamic funding models. List your business, get funded, and access powerful analytics all in one place.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
@@ -119,6 +121,26 @@ export default function Home() {
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
           <ChevronDown className="w-6 h-6 text-gray-400" />
         </div>
+        {/* Live Stats */}
+        <div className="absolute bottom-24 left-0 right-0">
+          <div className="flex flex-wrap justify-center gap-8 text-center">
+            <div className="px-4 py-2 rounded-full bg-black/50 backdrop-blur-sm border border-[#7F5AF0]/30">
+              <span className="text-sm font-medium text-white">
+                Total Investments Processed: <span className="text-[#2CB67D]">$42.8 Million</span>
+              </span>
+            </div>
+            <div className="px-4 py-2 rounded-full bg-black/50 backdrop-blur-sm border border-[#FF5470]/30">
+              <span className="text-sm font-medium text-white">
+                Successful Startups: <span className="text-[#FF5470]">320+</span>
+              </span>
+            </div>
+            <div className="px-4 py-2 rounded-full bg-black/50 backdrop-blur-sm border border-[#2CB67D]/30">
+              <span className="text-sm font-medium text-white">
+                Active Investors: <span className="text-[#7F5AF0]">1,250+</span>
+              </span>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Core Features Section */}
@@ -131,6 +153,36 @@ export default function Home() {
             <p className="text-gray-300 max-w-2xl mx-auto">
               A complete ecosystem for startups and investors powered by advanced AI technology.
             </p>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-6 justify-center mb-12">
+            <div className="relative p-px rounded-xl overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D] opacity-20"></div>
+              <div className="relative bg-black/80 backdrop-blur-sm rounded-xl p-6">
+                <h3 className="text-xl font-bold text-white mb-3 flex items-center">
+                  <Rocket className="w-5 h-5 mr-2 text-[#7F5AF0]" />
+                  For Startups
+                </h3>
+                <p className="text-gray-300">
+                  List your business, get AI-powered growth insights, and connect with the perfect investors for your
+                  industry and stage.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative p-px rounded-xl overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#FF5470] to-[#7F5AF0] opacity-20"></div>
+              <div className="relative bg-black/80 backdrop-blur-sm rounded-xl p-6">
+                <h3 className="text-xl font-bold text-white mb-3 flex items-center">
+                  <DollarSign className="w-5 h-5 mr-2 text-[#FF5470]" />
+                  For Investors
+                </h3>
+                <p className="text-gray-300">
+                  Discover high-potential startups, filter by industry and risk level, and build a diversified
+                  investment portfolio.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -272,6 +324,177 @@ export default function Home() {
                 <span className="absolute inset-0 bg-gradient-to-r from-[#2CB67D] to-[#7F5AF0] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Authentication & Community */}
+      <section className="relative z-10 py-20 bg-black">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Authentication */}
+            <div className="relative p-px rounded-xl overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D] opacity-20"></div>
+              <div className="relative bg-black/80 backdrop-blur-sm rounded-xl p-8">
+                <h3 className="text-2xl font-bold text-white mb-4">Dual-User Authentication System</h3>
+                <p className="text-gray-300 mb-6">
+                  Our platform features separate authentication flows for startups and investors, ensuring each user
+                  gets a tailored experience from the moment they sign up.
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                  <div className="p-4 rounded-lg border border-[#7F5AF0]/30 bg-[#7F5AF0]/5">
+                    <h4 className="text-white font-medium mb-2">Startup Access</h4>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <div className="w-5 h-5 rounded-full bg-[#7F5AF0]/20 flex items-center justify-center mt-0.5">
+                          <svg className="w-3 h-3 text-[#7F5AF0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <span className="text-sm text-gray-300">Business registration</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-5 h-5 rounded-full bg-[#7F5AF0]/20 flex items-center justify-center mt-0.5">
+                          <svg className="w-3 h-3 text-[#7F5AF0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <span className="text-sm text-gray-300">AI-powered business analysis</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-5 h-5 rounded-full bg-[#7F5AF0]/20 flex items-center justify-center mt-0.5">
+                          <svg className="w-3 h-3 text-[#7F5AF0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <span className="text-sm text-gray-300">Investor communication panel</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="p-4 rounded-lg border border-[#FF5470]/30 bg-[#FF5470]/5">
+                    <h4 className="text-white font-medium mb-2">Investor Access</h4>
+                    <ul className="space-y-2">
+                      <li className="flex items-start gap-2">
+                        <div className="w-5 h-5 rounded-full bg-[#FF5470]/20 flex items-center justify-center mt-0.5">
+                          <svg className="w-3 h-3 text-[#FF5470]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <span className="text-sm text-gray-300">Startup marketplace</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-5 h-5 rounded-full bg-[#FF5470]/20 flex items-center justify-center mt-0.5">
+                          <svg className="w-3 h-3 text-[#FF5470]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <span className="text-sm text-gray-300">Advanced filtering options</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-5 h-5 rounded-full bg-[#FF5470]/20 flex items-center justify-center mt-0.5">
+                          <svg className="w-3 h-3 text-[#FF5470]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <span className="text-sm text-gray-300">Investment portfolio tracking</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="flex justify-center">
+                  <Link href="/signup">
+                    <Button className="rounded-full bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D] hover:shadow-[0_0_15px_rgba(127,90,240,0.5)]">
+                      <span className="flex items-center gap-2">
+                        Create Account
+                        <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Community Forum */}
+            <div className="relative p-px rounded-xl overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#FF5470] to-[#7F5AF0] opacity-20"></div>
+              <div className="relative bg-black/80 backdrop-blur-sm rounded-xl p-8">
+                <h3 className="text-2xl font-bold text-white mb-4">Domain-Specific Community Forum</h3>
+                <p className="text-gray-300 mb-6">
+                  Connect with like-minded founders and investors in our industry-specific community forums, powered by
+                  AI-suggested discussion topics.
+                </p>
+
+                <div className="space-y-4 mb-6">
+                  <div className="p-4 rounded-lg border border-gray-800 bg-black/30">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#7F5AF0]/20 flex items-center justify-center">
+                        <MessageSquare className="w-5 h-5 text-[#7F5AF0]" />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-medium">AI-Suggested Topics</h4>
+                        <p className="text-sm text-gray-400 mb-2">
+                          Our AI analyzes market trends to suggest relevant discussion topics
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          <span className="px-2 py-1 rounded-full bg-[#7F5AF0]/20 text-[#7F5AF0] text-xs">
+                            Tech Trends
+                          </span>
+                          <span className="px-2 py-1 rounded-full bg-[#2CB67D]/20 text-[#2CB67D] text-xs">
+                            Healthcare
+                          </span>
+                          <span className="px-2 py-1 rounded-full bg-[#FF5470]/20 text-[#FF5470] text-xs">FinTech</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4 rounded-lg border border-gray-800 bg-black/30">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#2CB67D]/20 flex items-center justify-center">
+                        <Users className="w-5 h-5 text-[#2CB67D]" />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-medium">Networking Opportunities</h4>
+                        <p className="text-sm text-gray-400">
+                          Connect with potential co-founders, mentors, and investors in your industry
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4 rounded-lg border border-gray-800 bg-black/30">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#FF5470]/20 flex items-center justify-center">
+                        <LineChart className="w-5 h-5 text-[#FF5470]" />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-medium">Live Market Updates</h4>
+                        <p className="text-sm text-gray-400">
+                          Stay informed with real-time industry news and market announcements
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-center">
+                  <Link href="#communities">
+                    <Button
+                      variant="outline"
+                      className="rounded-full border border-[#FF5470]/50 hover:border-[#FF5470] bg-black/30 backdrop-blur-sm hover:shadow-[0_0_15px_rgba(255,84,112,0.3)]"
+                    >
+                      <span className="flex items-center gap-2 text-[#FF5470]">
+                        Explore Communities
+                        <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -681,6 +904,116 @@ export default function Home() {
 
                       <div className="absolute -top-4 -left-4 w-32 h-32 rounded-xl overflow-hidden -rotate-6 bg-black/80 border border-[#7F5AF0]/30 flex items-center justify-center">
                         <HandshakeIcon className="w-12 h-12 text-[#7F5AF0]" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Dynamic Payment Model */}
+      <section className="relative z-10 py-20 bg-gradient-to-b from-black to-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-white via-[#7F5AF0] to-[#2CB67D] bg-clip-text text-transparent mb-4">
+              AI-Powered Dynamic Payment Model
+            </h2>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              Our innovative revenue-based contribution system adjusts based on your startup's performance.
+            </p>
+          </div>
+
+          <div className="relative p-px rounded-xl overflow-hidden max-w-4xl mx-auto">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D] opacity-20"></div>
+            <div className="relative bg-black/80 backdrop-blur-sm rounded-xl p-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-4">Smart Revenue-Based Contribution</h3>
+                  <p className="text-gray-300 mb-6">
+                    Our platform uses AI to analyze your startup's financial health and adjusts payment terms
+                    accordingly:
+                  </p>
+
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#2CB67D]/20 flex items-center justify-center mt-0.5">
+                        <TrendingUp className="w-4 h-4 text-[#2CB67D]" />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-medium">When Profits Are High</h4>
+                        <p className="text-sm text-gray-400">
+                          During profitable periods, your startup contributes a higher percentage, supporting the
+                          ecosystem
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#FF5470]/20 flex items-center justify-center mt-0.5">
+                        <TrendingUp className="w-4 h-4 text-[#FF5470]" transform="rotate(180)" />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-medium">When Facing Challenges</h4>
+                        <p className="text-sm text-gray-400">
+                          During difficult times, your contribution decreases, giving you breathing room to recover
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#7F5AF0]/20 flex items-center justify-center mt-0.5">
+                        <Brain className="w-4 h-4 text-[#7F5AF0]" />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-medium">AI-Powered Adjustments</h4>
+                        <p className="text-sm text-gray-400">
+                          Our AI continuously monitors your business metrics to make real-time payment adjustments
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-6">
+                    <Link href="/platform-overview">
+                      <Button className="rounded-full bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D] hover:shadow-[0_0_15px_rgba(127,90,240,0.5)]">
+                        <span className="flex items-center gap-2">
+                          Learn More
+                          <ArrowRight className="w-4 h-4" />
+                        </span>
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="relative">
+                  <div className="relative p-px rounded-xl overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#7F5AF0]/30 to-[#2CB67D]/30 opacity-50"></div>
+                    <div className="relative bg-black/80 backdrop-blur-sm rounded-xl p-6">
+                      <div className="h-64">
+                        <Image
+                          src="/placeholder.svg?height=256&width=400"
+                          alt="Dynamic Payment Model"
+                          width={400}
+                          height={256}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4 mt-4">
+                        <div className="p-3 rounded-lg bg-[#2CB67D]/10 border border-[#2CB67D]/20">
+                          <p className="text-xs text-gray-400 mb-1">High Growth</p>
+                          <p className="text-lg font-bold text-white">8-12%</p>
+                          <p className="text-xs text-gray-400">of revenue</p>
+                        </div>
+
+                        <div className="p-3 rounded-lg bg-[#FF5470]/10 border border-[#FF5470]/20">
+                          <p className="text-xs text-gray-400 mb-1">Recovery Mode</p>
+                          <p className="text-lg font-bold text-white">3-5%</p>
+                          <p className="text-xs text-gray-400">of revenue</p>
+                        </div>
                       </div>
                     </div>
                   </div>
