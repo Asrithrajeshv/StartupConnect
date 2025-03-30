@@ -101,7 +101,7 @@ export default function DashboardPage() {
       {/* Dashboard Navigation */}
       <section className="relative z-10 container mx-auto px-4 pb-8">
         <Tabs defaultValue="overview" value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid grid-cols-7 mb-8 bg-transparent">
+          <TabsList className="grid grid-cols-8 mb-8 bg-transparent">
             {[
               { id: "overview", label: "Overview" },
               { id: "market", label: "Market Analysis" },
@@ -110,11 +110,12 @@ export default function DashboardPage() {
               { id: "investors", label: "Investors" },
               { id: "funding", label: "Funding" },
               { id: "loan", label: "Loan & Sale" },
+              { id: "collaboration", label: "Collaboration" },
             ].map((tab) => (
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className={`relative py-2 text-sm data-[state=active]:shadow-none data-[state=active]:bg-transparent ${
+                className={`relative py-1.5 text-sm data-[state=active]:shadow-none data-[state=active]:bg-transparent ${
                   activeTab === tab.id ? "text-white" : "text-gray-500 hover:text-gray-300"
                 }`}
               >
@@ -1956,6 +1957,308 @@ export default function DashboardPage() {
                               • Strong unit economics
                             </p>
                           </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </TabsContent>
+
+          {/* Collaboration Tab */}
+          <TabsContent value="collaboration" className="mt-0">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+              <div className="lg:col-span-2">
+                <Card className="bg-black/50 backdrop-blur-sm border-gray-800">
+                  <CardHeader>
+                    <CardTitle>Performance Analysis</CardTitle>
+                    <CardDescription>Areas requiring improvement and potential collaboration opportunities</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-6">
+                      <div className="p-4 rounded-lg border border-[#FF5470]/30 bg-[#FF5470]/5">
+                        <h4 className="text-white font-medium mb-3">Critical Areas for Improvement</h4>
+                        <div className="space-y-4">
+                          <div>
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-sm text-gray-400">Customer Acquisition Cost</span>
+                              <span className="text-sm text-[#FF5470]">32% above target</span>
+                            </div>
+                            <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                              <div className="bg-[#FF5470] h-full rounded-full" style={{ width: "78%" }}></div>
+                            </div>
+                            <p className="text-xs text-gray-500 mt-1">Current: $180 vs Target: $120</p>
+                          </div>
+
+                          <div>
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-sm text-gray-400">Market Reach</span>
+                              <span className="text-sm text-[#FF5470]">45% below target</span>
+                            </div>
+                            <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                              <div className="bg-[#FF5470] h-full rounded-full" style={{ width: "55%" }}></div>
+                            </div>
+                            <p className="text-xs text-gray-500 mt-1">Current: 3 markets vs Target: 7 markets</p>
+                          </div>
+
+                          <div>
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-sm text-gray-400">Technology Integration</span>
+                              <span className="text-sm text-[#FF5470]">28% below industry standard</span>
+                            </div>
+                            <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                              <div className="bg-[#FF5470] h-full rounded-full" style={{ width: "62%" }}></div>
+                            </div>
+                            <p className="text-xs text-gray-500 mt-1">Integration success rate: 72% vs Industry: 90%</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="p-4 rounded-lg border border-[#2CB67D]/30 bg-[#2CB67D]/5">
+                          <h4 className="text-white font-medium mb-3">Your Strengths</h4>
+                          <div className="space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-2 h-2 rounded-full bg-[#2CB67D]"></div>
+                              <span className="text-sm text-gray-300">AI Algorithm Accuracy (92%)</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="w-2 h-2 rounded-full bg-[#2CB67D]"></div>
+                              <span className="text-sm text-gray-300">Customer Retention (97.8%)</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="w-2 h-2 rounded-full bg-[#2CB67D]"></div>
+                              <span className="text-sm text-gray-300">Product Innovation</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="p-4 rounded-lg border border-[#7F5AF0]/30 bg-[#7F5AF0]/5">
+                          <h4 className="text-white font-medium mb-3">Collaboration Benefits</h4>
+                          <div className="space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-2 h-2 rounded-full bg-[#7F5AF0]"></div>
+                              <span className="text-sm text-gray-300">Reduced operational costs (est. 25%)</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="w-2 h-2 rounded-full bg-[#7F5AF0]"></div>
+                              <span className="text-sm text-gray-300">Expanded market reach (4 new markets)</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="w-2 h-2 rounded-full bg-[#7F5AF0]"></div>
+                              <span className="text-sm text-gray-300">Enhanced tech capabilities</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-black/50 backdrop-blur-sm border-gray-800 mt-6">
+                  <CardHeader>
+                    <CardTitle>Recommended Collaborations</CardTitle>
+                    <CardDescription>AI-matched startups based on complementary strengths</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {[
+                        {
+                          name: "MarketReach Solutions",
+                          logo: "https://ui-avatars.com/api/?background=2CB67D&color=fff&size=48&bold=true&length=1&name=M",
+                          strength: "Market Penetration",
+                          match: 94,
+                          benefits: "Established presence in 12 markets, Strong distribution network",
+                          synergy: "Their market reach + Your AI technology",
+                          color: "#2CB67D"
+                        },
+                        {
+                          name: "TechFlow Integration",
+                          logo: "https://ui-avatars.com/api/?background=7F5AF0&color=fff&size=48&bold=true&length=1&name=T",
+                          strength: "Technology Integration",
+                          match: 91,
+                          benefits: "95% integration success rate, Rapid deployment system",
+                          synergy: "Their integration expertise + Your product innovation",
+                          color: "#7F5AF0"
+                        },
+                        {
+                          name: "CostEfficient AI",
+                          logo: "https://ui-avatars.com/api/?background=FF5470&color=fff&size=48&bold=true&length=1&name=C",
+                          strength: "Cost Optimization",
+                          match: 88,
+                          benefits: "Lowest CAC in industry ($85), Automated marketing system",
+                          synergy: "Their cost efficiency + Your retention rates",
+                          color: "#FF5470"
+                        }
+                      ].map((company, index) => (
+                        <div key={index} className="p-4 rounded-lg border border-gray-800 bg-black/30 hover:border-[#7F5AF0]/50 hover:bg-[#7F5AF0]/5 transition-all duration-200">
+                          <div className="flex items-center gap-4 mb-3">
+                            <Image
+                              src={company.logo}
+                              alt={company.name}
+                              width={48}
+                              height={48}
+                              className="rounded-full"
+                            />
+                            <div className="flex-1">
+                              <div className="flex justify-between items-center">
+                                <h4 className="text-white font-medium">{company.name}</h4>
+                                <div className="px-2 py-0.5 rounded-full bg-[#7F5AF0]/20 text-[#7F5AF0] text-xs">
+                                  {company.match}% Match
+                                </div>
+                              </div>
+                              <p className="text-sm text-gray-400">Specializes in {company.strength}</p>
+                            </div>
+                          </div>
+
+                          <div className="space-y-3">
+                            <div>
+                              <p className="text-xs text-gray-500 mb-1">Key Benefits</p>
+                              <p className="text-sm text-white">{company.benefits}</p>
+                            </div>
+                            <div>
+                              <p className="text-xs text-gray-500 mb-1">Potential Synergy</p>
+                              <p className="text-sm text-white">{company.synergy}</p>
+                            </div>
+                          </div>
+
+                          <div className="flex justify-between mt-4">
+                            <Button variant="link" size="sm" className="h-auto p-0 text-[#7F5AF0]">
+                              <span className="text-xs flex items-center gap-1">
+                                View Details
+                                <ArrowRight className="w-3 h-3" />
+                              </span>
+                            </Button>
+
+                            <Button
+                              size="sm"
+                              className="rounded-full bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D]"
+                            >
+                              <span className="text-xs">Initiate Discussion</span>
+                            </Button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div>
+                <Card className="bg-black/50 backdrop-blur-sm border-gray-800 mb-6">
+                  <CardHeader>
+                    <CardTitle>Collaboration Impact</CardTitle>
+                    <CardDescription>Projected benefits of strategic partnerships</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="p-4 rounded-lg border border-[#2CB67D]/30 bg-[#2CB67D]/5">
+                        <h4 className="text-white font-medium mb-3">Financial Projections</h4>
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm text-gray-400">Cost Reduction</span>
+                            <span className="text-sm font-medium text-[#2CB67D]">25-30%</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm text-gray-400">Revenue Growth</span>
+                            <span className="text-sm font-medium text-[#2CB67D]">40-45%</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm text-gray-400">Market Expansion</span>
+                            <span className="text-sm font-medium text-[#2CB67D]">4 markets</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-4 rounded-lg border border-[#7F5AF0]/30 bg-[#7F5AF0]/5">
+                        <h4 className="text-white font-medium mb-3">Timeline to Results</h4>
+                        <div className="space-y-3">
+                          <div>
+                            <div className="flex justify-between items-center mb-1">
+                              <span className="text-sm text-gray-400">Integration Phase</span>
+                              <span className="text-sm text-white">2-3 months</span>
+                            </div>
+                            <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
+                              <div className="bg-[#7F5AF0] h-full rounded-full" style={{ width: "30%" }}></div>
+                            </div>
+                          </div>
+                          <div>
+                            <div className="flex justify-between items-center mb-1">
+                              <span className="text-sm text-gray-400">Market Expansion</span>
+                              <span className="text-sm text-white">4-6 months</span>
+                            </div>
+                            <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
+                              <div className="bg-[#7F5AF0] h-full rounded-full" style={{ width: "50%" }}></div>
+                            </div>
+                          </div>
+                          <div>
+                            <div className="flex justify-between items-center mb-1">
+                              <span className="text-sm text-gray-400">Full Optimization</span>
+                              <span className="text-sm text-white">8-10 months</span>
+                            </div>
+                            <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
+                              <div className="bg-[#7F5AF0] h-full rounded-full" style={{ width: "80%" }}></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-4 rounded-lg border border-[#FF5470]/30 bg-[#FF5470]/5">
+                        <h4 className="text-white font-medium mb-3">Risk Assessment</h4>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2">
+                            <Shield className="w-4 h-4 text-[#FF5470]" />
+                            <span className="text-sm text-gray-300">Integration Complexity: Medium</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Shield className="w-4 h-4 text-[#2CB67D]" />
+                            <span className="text-sm text-gray-300">Market Risk: Low</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Shield className="w-4 h-4 text-[#7F5AF0]" />
+                            <span className="text-sm text-gray-300">Financial Risk: Low</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-black/50 backdrop-blur-sm border-gray-800">
+                  <CardHeader>
+                    <CardTitle>Next Steps</CardTitle>
+                    <CardDescription>Action plan for collaboration</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3 p-3 rounded-lg border border-[#7F5AF0]/30 bg-[#7F5AF0]/5">
+                        <div className="w-8 h-8 rounded-full bg-[#7F5AF0]/20 flex items-center justify-center">
+                          <span className="text-sm font-medium text-white">1</span>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-white">Initial Discussion</p>
+                          <p className="text-xs text-gray-400">Schedule meetings with top matches</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3 p-3 rounded-lg border border-gray-800 bg-black/30">
+                        <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
+                          <span className="text-sm font-medium text-white">2</span>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-white">Due Diligence</p>
+                          <p className="text-xs text-gray-400">Review financials and integration plans</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3 p-3 rounded-lg border border-gray-800 bg-black/30">
+                        <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
+                          <span className="text-sm font-medium text-white">3</span>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-white">Partnership Agreement</p>
+                          <p className="text-xs text-gray-400">Finalize terms and structure</p>
                         </div>
                       </div>
                     </div>
