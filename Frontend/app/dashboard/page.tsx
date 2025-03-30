@@ -101,7 +101,7 @@ export default function DashboardPage() {
       {/* Dashboard Navigation */}
       <section className="relative z-10 container mx-auto px-4 pb-8">
         <Tabs defaultValue="overview" value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid grid-cols-2 md:grid-cols-6 mb-8 bg-transparent">
+          <TabsList className="grid grid-cols-7 mb-8 bg-transparent">
             {[
               { id: "overview", label: "Overview" },
               { id: "market", label: "Market Analysis" },
@@ -109,11 +109,12 @@ export default function DashboardPage() {
               { id: "swot", label: "SWOT Analysis" },
               { id: "investors", label: "Investors" },
               { id: "funding", label: "Funding" },
+              { id: "loan", label: "Loan & Sale" },
             ].map((tab) => (
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className={`relative py-3 data-[state=active]:shadow-none data-[state=active]:bg-transparent ${
+                className={`relative py-2 text-sm data-[state=active]:shadow-none data-[state=active]:bg-transparent ${
                   activeTab === tab.id ? "text-white" : "text-gray-500 hover:text-gray-300"
                 }`}
               >
@@ -1757,6 +1758,210 @@ export default function DashboardPage() {
                   </div>
                 </CardContent>
               </Card>
+            </div>
+          </TabsContent>
+
+          {/* Loan & Sale Tab */}
+          <TabsContent value="loan" className="mt-0">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+              <div className="lg:col-span-2">
+                <Card className="bg-black/50 backdrop-blur-sm border-gray-800">
+                  <CardHeader>
+                    <CardTitle>Loan Repayment Status</CardTitle>
+                    <CardDescription>Track your loan repayment progress and remaining balance</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-6">
+                      <div className="grid grid-cols-3 gap-4">
+                        <div className="p-4 rounded-lg border border-[#7F5AF0]/30 bg-[#7F5AF0]/5">
+                          <p className="text-xs text-gray-400 mb-1">Total Loan Amount</p>
+                          <p className="text-2xl font-bold text-white">$200,000</p>
+                          <p className="text-xs text-gray-500 mt-1">Initial loan from founder</p>
+                        </div>
+                        <div className="p-4 rounded-lg border border-[#2CB67D]/30 bg-[#2CB67D]/5">
+                          <p className="text-xs text-gray-400 mb-1">Amount Paid</p>
+                          <p className="text-2xl font-bold text-white">$80,000</p>
+                          <p className="text-xs text-gray-500 mt-1">40% of total loan</p>
+                        </div>
+                        <div className="p-4 rounded-lg border border-[#FF5470]/30 bg-[#FF5470]/5">
+                          <p className="text-xs text-gray-400 mb-1">Remaining Balance</p>
+                          <p className="text-2xl font-bold text-white">$120,000</p>
+                          <p className="text-xs text-gray-500 mt-1">To be repaid</p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <p className="text-sm text-gray-400">Repayment Progress</p>
+                          <p className="text-sm font-medium text-white">40%</p>
+                        </div>
+                        <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                          <div
+                            className="bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D] h-full rounded-full"
+                            style={{ width: "40%" }}
+                          ></div>
+                        </div>
+                      </div>
+
+                      <div className="p-4 rounded-lg border border-gray-800 bg-black/30">
+                        <h4 className="text-white font-medium mb-3">Repayment History</h4>
+                        <div className="space-y-3">
+                          {[
+                            { date: "Jan 2024", amount: "$20,000", status: "Paid" },
+                            { date: "Feb 2024", amount: "$20,000", status: "Paid" },
+                            { date: "Mar 2024", amount: "$20,000", status: "Paid" },
+                            { date: "Apr 2024", amount: "$20,000", status: "Paid" },
+                            { date: "May 2024", amount: "$20,000", status: "Pending" },
+                            { date: "Jun 2024", amount: "$20,000", status: "Pending" },
+                          ].map((payment, index) => (
+                            <div key={index} className="flex justify-between items-center">
+                              <div className="flex items-center gap-2">
+                                <div className={`w-2 h-2 rounded-full ${
+                                  payment.status === "Paid" ? "bg-[#2CB67D]" : "bg-[#FF5470]"
+                                }`}></div>
+                                <span className="text-sm text-gray-300">{payment.date}</span>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <span className="text-sm font-medium text-white">{payment.amount}</span>
+                                <span className={`text-xs px-2 py-0.5 rounded-full ${
+                                  payment.status === "Paid" 
+                                    ? "bg-[#2CB67D]/20 text-[#2CB67D]" 
+                                    : "bg-[#FF5470]/20 text-[#FF5470]"
+                                }`}>
+                                  {payment.status}
+                                </span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div>
+                <Card className="bg-black/50 backdrop-blur-sm border-gray-800 mb-6">
+                  <CardHeader>
+                    <CardTitle>Sale Calculator</CardTitle>
+                    <CardDescription>Calculate potential profit from selling the business</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="p-4 rounded-lg border border-[#7F5AF0]/30 bg-[#7F5AF0]/5">
+                        <h4 className="text-white font-medium mb-3">Startup Valuation</h4>
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm text-gray-400">Monthly Revenue</span>
+                            <span className="text-sm font-medium text-white">$45,000</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm text-gray-400">Annual Revenue</span>
+                            <span className="text-sm font-medium text-white">$540,000</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm text-gray-400">Growth Rate</span>
+                            <span className="text-sm font-medium text-[#2CB67D]">+12% MoM</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm text-gray-400">Valuation Multiple</span>
+                            <span className="text-sm font-medium text-white">5x ARR</span>
+                          </div>
+                          <div className="pt-2 border-t border-gray-800">
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm font-medium text-white">Proposed Sale Price</span>
+                              <span className="text-sm font-medium text-[#7F5AF0]">$2,700,000</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-4 rounded-lg border border-[#FF5470]/30 bg-[#FF5470]/5">
+                        <h4 className="text-white font-medium mb-3">Repayment Breakdown</h4>
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm text-gray-400">Sale Amount</span>
+                            <span className="text-sm font-medium text-white">$2,700,000</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm text-gray-400">Remaining Loan</span>
+                            <span className="text-sm font-medium text-white">$120,000</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm text-gray-400">Founder's Share (15%)</span>
+                            <span className="text-sm font-medium text-white">$405,000</span>
+                          </div>
+                          <div className="pt-2 border-t border-gray-800">
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm font-medium text-white">Your Profit</span>
+                              <span className="text-sm font-medium text-[#2CB67D]">$2,175,000</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-4 rounded-lg border border-[#2CB67D]/30 bg-[#2CB67D]/5">
+                        <h4 className="text-white font-medium mb-3">Profit Breakdown</h4>
+                        <div className="space-y-2">
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm text-gray-400">Initial Investment</span>
+                            <span className="text-sm font-medium text-white">$200,000</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm text-gray-400">Final Profit</span>
+                            <span className="text-sm font-medium text-[#2CB67D]">$2,175,000</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm text-gray-400">ROI</span>
+                            <span className="text-sm font-medium text-[#2CB67D]">987%</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <Button className="w-full rounded-full bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D]">
+                        Generate Sale Report
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-black/50 backdrop-blur-sm border-gray-800">
+                  <CardHeader>
+                    <CardTitle>Sale Recommendations</CardTitle>
+                    <CardDescription>AI-generated insights for optimal sale timing</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="p-4 rounded-lg border border-[#7F5AF0]/30 bg-[#7F5AF0]/5">
+                        <div className="flex items-start gap-3 mb-2">
+                          <Brain className="w-5 h-5 text-[#7F5AF0] mt-0.5" />
+                          <div>
+                            <h4 className="text-white font-medium">Optimal Sale Timing</h4>
+                            <p className="text-sm text-gray-300">
+                              Based on your current growth rate and market conditions, we recommend waiting 3-6 months before selling. This could increase your valuation by 25-30% due to projected revenue growth.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-4 rounded-lg border border-[#2CB67D]/30 bg-[#2CB67D]/5">
+                        <div className="flex items-start gap-3 mb-2">
+                          <Brain className="w-5 h-5 text-[#2CB67D] mt-0.5" />
+                          <div>
+                            <h4 className="text-white font-medium">Valuation Factors</h4>
+                            <p className="text-sm text-gray-300">
+                              Your current metrics suggest a valuation range of $2.5M - $3M. Key factors include:
+                              • 18% MoM growth rate
+                              • 97.8% customer retention
+                              • Strong unit economics
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </TabsContent>
         </Tabs>
