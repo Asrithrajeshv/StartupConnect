@@ -32,6 +32,7 @@ import { GamifiedExperience } from "@/components/gamified-experience"
 import { ResourcesHub } from "@/components/resources-hub"
 import { BonusFeatures } from "@/components/bonus-features"
 import Image from "next/image"
+import { PlatformPreview } from "@/components/platform-preview"
 
 export default function Home() {
   return (
@@ -41,6 +42,16 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative z-10 container mx-auto px-4 pt-32 pb-20 flex flex-col items-center justify-center min-h-screen text-center">
+        <div className="absolute top-20 right-10 w-64 h-64">
+          <Image
+            src="/images/hero-illustration.svg"
+            alt="AI Startup Platform"
+            width={256}
+            height={256}
+            className="animate-float"
+          />
+        </div>
+        
         <div className="space-y-6 max-w-4xl mx-auto">
           <div className="inline-block px-4 py-1.5 mb-4 rounded-full bg-gradient-to-r from-[#7F5AF0]/20 to-[#2CB67D]/20 border border-[#7F5AF0]/30 backdrop-blur-sm">
             <span className="text-sm font-medium bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D] bg-clip-text text-transparent">
@@ -124,20 +135,32 @@ export default function Home() {
         {/* Live Stats */}
         <div className="absolute bottom-24 left-0 right-0">
           <div className="flex flex-wrap justify-center gap-8 text-center">
-            <div className="px-4 py-2 rounded-full bg-black/50 backdrop-blur-sm border border-[#7F5AF0]/30">
-              <span className="text-sm font-medium text-white">
-                Total Investments Processed: <span className="text-[#2CB67D]">$42.8 Million</span>
-              </span>
+            <div className="px-6 py-3 rounded-full bg-black/50 backdrop-blur-sm border border-[#7F5AF0]/30 flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-[#7F5AF0]/20 flex items-center justify-center">
+                <DollarSign className="w-4 h-4 text-[#7F5AF0]" />
+              </div>
+              <div className="flex flex-col items-start">
+                <span className="text-lg font-bold text-[#2CB67D]">$42.8M</span>
+                <span className="text-xs text-gray-400">Total Investments</span>
+              </div>
             </div>
-            <div className="px-4 py-2 rounded-full bg-black/50 backdrop-blur-sm border border-[#FF5470]/30">
-              <span className="text-sm font-medium text-white">
-                Successful Startups: <span className="text-[#FF5470]">320+</span>
-              </span>
+            <div className="px-6 py-3 rounded-full bg-black/50 backdrop-blur-sm border border-[#FF5470]/30 flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-[#FF5470]/20 flex items-center justify-center">
+                <Rocket className="w-4 h-4 text-[#FF5470]" />
+              </div>
+              <div className="flex flex-col items-start">
+                <span className="text-lg font-bold text-[#FF5470]">320+</span>
+                <span className="text-xs text-gray-400">Successful Startups</span>
+              </div>
             </div>
-            <div className="px-4 py-2 rounded-full bg-black/50 backdrop-blur-sm border border-[#2CB67D]/30">
-              <span className="text-sm font-medium text-white">
-                Active Investors: <span className="text-[#7F5AF0]">1,250+</span>
-              </span>
+            <div className="px-6 py-3 rounded-full bg-black/50 backdrop-blur-sm border border-[#2CB67D]/30 flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-[#2CB67D]/20 flex items-center justify-center">
+                <Users className="w-4 h-4 text-[#2CB67D]" />
+              </div>
+              <div className="flex flex-col items-start">
+                <span className="text-lg font-bold text-[#7F5AF0]">1,250+</span>
+                <span className="text-xs text-gray-400">Active Investors</span>
+              </div>
             </div>
           </div>
         </div>
@@ -145,6 +168,16 @@ export default function Home() {
 
       {/* Core Features Section */}
       <section className="relative z-10 py-20 bg-gradient-to-b from-black to-gray-900">
+        <div className="absolute right-0 top-0 w-96 h-96 opacity-20">
+          <Image
+            src="/images/features-pattern.svg"
+            alt="Features Pattern"
+            width={384}
+            height={384}
+            className="object-cover"
+          />
+        </div>
+        
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-white via-[#7F5AF0] to-[#2CB67D] bg-clip-text text-transparent mb-4">
@@ -500,10 +533,186 @@ export default function Home() {
       </section>
 
       {/* Trusted By Section */}
-      <TrustedBy />
+      <section className="relative z-10 py-20 bg-black">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">Trusted By Industry Leaders</h2>
+            <p className="text-gray-400">Join hundreds of successful startups and investors on our platform</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center">
+            {[
+              { name: "TechVentures", color: "#7F5AF0" },
+              { name: "GreenInvest", color: "#2CB67D" },
+              { name: "InnovateCap", color: "#FF5470" },
+              { name: "FutureScale", color: "#7F5AF0" },
+              { name: "EcoFund", color: "#2CB67D" },
+              { name: "NextGen", color: "#FF5470" },
+            ].map((company, index) => (
+              <div
+                key={index}
+                className="w-24 h-24 rounded-2xl bg-black/50 backdrop-blur-sm border border-gray-800 flex items-center justify-center p-4 hover:border-[#7F5AF0]/50 transition-all duration-300"
+              >
+                <Image
+                  src={`https://ui-avatars.com/api/?background=${company.color.replace("#", "")}&color=fff&size=64&bold=true&name=${company.name}`}
+                  alt={company.name}
+                  width={64}
+                  height={64}
+                  className="rounded-xl"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Success Stories */}
+      <section className="relative z-10 py-20 bg-gradient-to-b from-black to-gray-900">
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-72 h-72 opacity-10">
+          <Image
+            src="/images/success-pattern.svg"
+            alt="Success Pattern"
+            width={288}
+            height={288}
+            className="object-cover"
+          />
+        </div>
+        
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-white via-[#7F5AF0] to-[#2CB67D] bg-clip-text text-transparent mb-4">
+              Success Stories
+            </h2>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              See how startups are achieving their goals with our platform
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "EcoTech Solutions",
+                description: "Raised $2.5M seed round through our platform",
+                growth: "+180%",
+                metric: "Revenue Growth",
+                color: "#2CB67D",
+              },
+              {
+                name: "AI Analytics Pro",
+                description: "Connected with 12 strategic investors",
+                growth: "3x",
+                metric: "User Growth",
+                color: "#7F5AF0",
+              },
+              {
+                name: "HealthTech Plus",
+                description: "Expanded to 5 new markets in 6 months",
+                growth: "+240%",
+                metric: "Market Growth",
+                color: "#FF5470",
+              },
+            ].map((story, index) => (
+              <div
+                key={index}
+                className="relative p-px rounded-xl overflow-hidden group hover:scale-105 transition-transform duration-300"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D] opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div className="relative bg-black/80 backdrop-blur-sm rounded-xl p-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <Image
+                      src={`https://ui-avatars.com/api/?background=${story.color.replace("#", "")}&color=fff&size=48&bold=true&name=${story.name}`}
+                      alt={story.name}
+                      width={48}
+                      height={48}
+                      className="rounded-xl"
+                    />
+                    <div>
+                      <h3 className="text-lg font-bold text-white">{story.name}</h3>
+                      <p className="text-sm text-gray-400">{story.description}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="text-2xl font-bold text-[#2CB67D]">{story.growth}</div>
+                    <div className="text-sm text-gray-400">{story.metric}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Insights */}
+      <section className="relative z-10 py-20 bg-black">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-white via-[#7F5AF0] to-[#2CB67D] bg-clip-text text-transparent mb-4">
+              Latest Market Insights
+            </h2>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              Stay updated with the latest trends and opportunities
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "AI & Machine Learning",
+                trend: "Growing 2.5x faster than other sectors",
+                icon: Brain,
+                color: "#7F5AF0",
+              },
+              {
+                title: "Sustainable Tech",
+                trend: "3x increase in investor interest",
+                icon: LineChart,
+                color: "#2CB67D",
+              },
+              {
+                title: "FinTech Innovation",
+                trend: "42% YoY market growth",
+                icon: TrendingUp,
+                color: "#FF5470",
+              },
+            ].map((insight, index) => (
+              <div
+                key={index}
+                className="relative p-px rounded-xl overflow-hidden group hover:scale-105 transition-transform duration-300"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D] opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div className="relative bg-black/80 backdrop-blur-sm rounded-xl p-8">
+                  <div className="w-12 h-12 rounded-full bg-[${insight.color}]/20 flex items-center justify-center mb-6">
+                    <insight.icon className="w-6 h-6 text-[${insight.color}]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">{insight.title}</h3>
+                  <p className="text-gray-400">{insight.trend}</p>
+                  <Button
+                    variant="link"
+                    className="mt-4 p-0 h-auto text-[${insight.color}] hover:text-[${insight.color}]/80"
+                  >
+                    <span className="flex items-center gap-2">
+                      Learn More
+                      <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* How It Works Section */}
       <section className="relative z-10 py-20 bg-black" id="how-it-works">
+        <div className="absolute right-0 bottom-0 w-80 h-80 opacity-15">
+          <Image
+            src="/images/how-it-works-pattern.svg"
+            alt="How It Works Pattern"
+            width={320}
+            height={320}
+            className="object-cover"
+          />
+        </div>
+        
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-white via-[#7F5AF0] to-[#2CB67D] bg-clip-text text-transparent mb-4">
@@ -661,7 +870,114 @@ export default function Home() {
             </p>
           </div>
 
-          <ResourcesHub />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Blog Post 1 */}
+            <div className="relative p-px rounded-xl overflow-hidden group hover:scale-105 transition-transform duration-300">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D] opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+              <div className="relative bg-black/80 backdrop-blur-sm rounded-xl">
+                <div className="aspect-[2/1] rounded-t-xl overflow-hidden">
+                  <Image
+                    src="/blog-images/startup-trends.svg"
+                    alt="10 Startup Trends to Watch in 2023"
+                    width={800}
+                    height={400}
+                    className="object-cover transform group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center gap-4 text-sm text-gray-400 mb-4">
+                    <time>May 15, 2023</time>
+                    <span>5 min read</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#7F5AF0] transition-colors duration-300">
+                    10 Startup Trends to Watch in 2023
+                  </h3>
+                  <p className="text-gray-400 mb-4">
+                    Discover the emerging trends that will shape the startup ecosystem this year.
+                  </p>
+                  <Link href="#" className="text-[#7F5AF0] hover:text-[#2CB67D] transition-colors duration-300 inline-flex items-center gap-2">
+                    Read More <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Blog Post 2 */}
+            <div className="relative p-px rounded-xl overflow-hidden group hover:scale-105 transition-transform duration-300">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#2CB67D] to-[#FF5470] opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+              <div className="relative bg-black/80 backdrop-blur-sm rounded-xl">
+                <div className="aspect-[2/1] rounded-t-xl overflow-hidden">
+                  <Image
+                    src="/blog-images/validate-idea.svg"
+                    alt="How to Validate Your Startup Idea"
+                    width={800}
+                    height={400}
+                    className="object-cover transform group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center gap-4 text-sm text-gray-400 mb-4">
+                    <time>April 28, 2023</time>
+                    <span>7 min read</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#2CB67D] transition-colors duration-300">
+                    How to Validate Your Startup Idea
+                  </h3>
+                  <p className="text-gray-400 mb-4">
+                    Learn proven methods to test your startup concept before investing time and money.
+                  </p>
+                  <Link href="#" className="text-[#2CB67D] hover:text-[#FF5470] transition-colors duration-300 inline-flex items-center gap-2">
+                    Read More <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Blog Post 3 */}
+            <div className="relative p-px rounded-xl overflow-hidden group hover:scale-105 transition-transform duration-300">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#FF5470] to-[#7F5AF0] opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+              <div className="relative bg-black/80 backdrop-blur-sm rounded-xl">
+                <div className="aspect-[2/1] rounded-t-xl overflow-hidden">
+                  <Image
+                    src="/blog-images/fundraising.svg"
+                    alt="Fundraising 101: A Guide for First-Time Founders"
+                    width={800}
+                    height={400}
+                    className="object-cover transform group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center gap-4 text-sm text-gray-400 mb-4">
+                    <time>April 10, 2023</time>
+                    <span>9 min read</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#FF5470] transition-colors duration-300">
+                    Fundraising 101: A Guide for First-Time Founders
+                  </h3>
+                  <p className="text-gray-400 mb-4">
+                    Everything you need to know about raising capital for your startup.
+                  </p>
+                  <Link href="#" className="text-[#FF5470] hover:text-[#7F5AF0] transition-colors duration-300 inline-flex items-center gap-2">
+                    Read More <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <Link href="#">
+              <Button
+                variant="outline"
+                className="rounded-full px-8 py-6 border border-[#7F5AF0]/50 hover:border-[#7F5AF0] bg-black/30 backdrop-blur-sm hover:shadow-[0_0_25px_rgba(127,90,240,0.3)] transition-all duration-300"
+              >
+                <span className="flex items-center gap-2 bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D] bg-clip-text text-transparent">
+                  View All Blog Posts
+                  <ArrowRight className="w-4 h-4" />
+                </span>
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -890,20 +1206,59 @@ export default function Home() {
                   <div className="relative p-px rounded-xl overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-[#7F5AF0]/30 to-[#2CB67D]/30 opacity-50"></div>
                     <div className="relative bg-black/80 backdrop-blur-sm rounded-xl p-6">
-                      <Image
-                        src="/placeholder.svg?height=400&width=500"
-                        alt="Platform Overview"
-                        width={500}
-                        height={400}
-                        className="w-full h-auto rounded-lg"
-                      />
-
-                      <div className="absolute -bottom-4 -right-4 w-32 h-32 rounded-xl overflow-hidden rotate-6 bg-black/80 border border-[#2CB67D]/30 flex items-center justify-center">
-                        <LineChart className="w-12 h-12 text-[#2CB67D]" />
-                      </div>
-
-                      <div className="absolute -top-4 -left-4 w-32 h-32 rounded-xl overflow-hidden -rotate-6 bg-black/80 border border-[#7F5AF0]/30 flex items-center justify-center">
-                        <HandshakeIcon className="w-12 h-12 text-[#7F5AF0]" />
+                      <div className="flex flex-col gap-6">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-4">
+                            <div className="flex -space-x-2">
+                              <div className="w-8 h-8 rounded-full bg-[#7F5AF0]/20 flex items-center justify-center">
+                                <span className="text-[#7F5AF0] text-sm font-medium">S</span>
+                              </div>
+                              <div className="w-8 h-8 rounded-full bg-[#2CB67D]/20 flex items-center justify-center">
+                                <span className="text-[#2CB67D] text-sm font-medium">P</span>
+                              </div>
+                              <div className="w-8 h-8 rounded-full bg-[#FF5470]/20 flex items-center justify-center">
+                                <span className="text-[#FF5470] text-sm font-medium">D</span>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="w-2 h-2 rounded-full bg-[#2CB67D]"></div>
+                              <span className="text-sm text-gray-400">Live Preview</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="w-3 h-3 rounded-full bg-[#FF5470]"></div>
+                            <div className="w-3 h-3 rounded-full bg-[#2CB67D]"></div>
+                            <div className="w-3 h-3 rounded-full bg-[#7F5AF0]"></div>
+                          </div>
+                        </div>
+                        
+                        <Image
+                          src="/images/platform-preview-action.svg"
+                          alt="Platform Preview"
+                          width={800}
+                          height={400}
+                          className="w-full h-auto rounded-lg shadow-2xl"
+                          priority
+                        />
+                        
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-4">
+                            <div className="px-3 py-1 rounded-full bg-[#7F5AF0]/20 border border-[#7F5AF0]/30">
+                              <span className="text-sm text-[#7F5AF0]">Dashboard</span>
+                            </div>
+                            <div className="px-3 py-1 rounded-full bg-[#2CB67D]/20 border border-[#2CB67D]/30">
+                              <span className="text-sm text-[#2CB67D]">Analytics</span>
+                            </div>
+                            <div className="px-3 py-1 rounded-full bg-[#FF5470]/20 border border-[#FF5470]/30">
+                              <span className="text-sm text-[#FF5470]">Growth</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 text-gray-400">
+                            <span className="text-sm">Updated 2m ago</span>
+                            <div className="w-1 h-1 rounded-full bg-gray-400"></div>
+                            <span className="text-sm">Live Data</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -992,29 +1347,7 @@ export default function Home() {
                   <div className="relative p-px rounded-xl overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-[#7F5AF0]/30 to-[#2CB67D]/30 opacity-50"></div>
                     <div className="relative bg-black/80 backdrop-blur-sm rounded-xl p-6">
-                      <div className="h-64">
-                        <Image
-                          src="/placeholder.svg?height=256&width=400"
-                          alt="Dynamic Payment Model"
-                          width={400}
-                          height={256}
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-4 mt-4">
-                        <div className="p-3 rounded-lg bg-[#2CB67D]/10 border border-[#2CB67D]/20">
-                          <p className="text-xs text-gray-400 mb-1">High Growth</p>
-                          <p className="text-lg font-bold text-white">8-12%</p>
-                          <p className="text-xs text-gray-400">of revenue</p>
-                        </div>
-
-                        <div className="p-3 rounded-lg bg-[#FF5470]/10 border border-[#FF5470]/20">
-                          <p className="text-xs text-gray-400 mb-1">Recovery Mode</p>
-                          <p className="text-lg font-bold text-white">3-5%</p>
-                          <p className="text-xs text-gray-400">of revenue</p>
-                        </div>
-                      </div>
+                      <PlatformPreview type="payment" />
                     </div>
                   </div>
                 </div>

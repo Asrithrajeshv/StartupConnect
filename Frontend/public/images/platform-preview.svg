@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with Grid -->
+  <defs>
+    <pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#7F5AF0" stroke-width="0.5" stroke-opacity="0.1"/>
+    </pattern>
+    <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+      <rect width="100" height="100" fill="url(#smallGrid)"/>
+      <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#7F5AF0" stroke-width="1" stroke-opacity="0.2"/>
+    </pattern>
+  </defs>
+  
+  <!-- Main Background -->
+  <rect width="800" height="400" fill="url(#grid)"/>
+  
+  <!-- Platform Cards -->
+  <g transform="translate(50, 50)">
+    <!-- Card 1: EcoTrack -->
+    <g>
+      <rect x="0" y="0" width="200" height="120" rx="10" fill="#1A1A1A" filter="url(#glow)"/>
+      <text x="20" y="30" fill="#7F5AF0" font-size="16" font-weight="bold">EcoTrack</text>
+      <text x="20" y="50" fill="#ffffff" font-size="12">Sustainability Platform</text>
+      <path d="M20 70 L180 70" stroke="#2CB67D" stroke-width="2" stroke-dasharray="4 4"/>
+      <circle cx="160" cy="90" r="15" fill="#2CB67D" fill-opacity="0.2"/>
+      <text x="160" y="95" fill="#2CB67D" font-size="12" text-anchor="middle">90%</text>
+    </g>
+    
+    <!-- Card 2: HealthTech -->
+    <g transform="translate(250, 0)">
+      <rect x="0" y="0" width="200" height="120" rx="10" fill="#1A1A1A" filter="url(#glow)"/>
+      <text x="20" y="30" fill="#FF5470" font-size="16" font-weight="bold">HealthTech</text>
+      <text x="20" y="50" fill="#ffffff" font-size="12">AI Diagnostics</text>
+      <path d="M20 70 L180 70" stroke="#FF5470" stroke-width="2" stroke-dasharray="4 4"/>
+      <circle cx="160" cy="90" r="15" fill="#FF5470" fill-opacity="0.2"/>
+      <text x="160" y="95" fill="#FF5470" font-size="12" text-anchor="middle">85%</text>
+    </g>
+  </g>
+  
+  <!-- Analysis Graph -->
+  <g transform="translate(100, 220)">
+    <!-- Graph Background -->
+    <rect x="0" y="0" width="600" height="150" rx="10" fill="#1A1A1A" filter="url(#glow)"/>
+    
+    <!-- Graph Lines -->
+    <path d="M50 120 C150 80, 300 90, 550 20" 
+          stroke="#7F5AF0" 
+          stroke-width="3" 
+          fill="none" 
+          filter="url(#glow)">
+      <animate attributeName="stroke-dashoffset" from="1000" to="0" dur="2s"/>
+    </path>
+    
+    <path d="M50 120 C150 100, 300 110, 550 60" 
+          stroke="#2CB67D" 
+          stroke-width="3" 
+          fill="none" 
+          filter="url(#glow)">
+      <animate attributeName="stroke-dashoffset" from="1000" to="0" dur="2s" begin="0.5s"/>
+    </path>
+    
+    <!-- Data Points -->
+    <circle cx="50" cy="120" r="4" fill="#7F5AF0"/>
+    <circle cx="200" cy="85" r="4" fill="#7F5AF0"/>
+    <circle cx="350" cy="70" r="4" fill="#7F5AF0"/>
+    <circle cx="550" cy="20" r="4" fill="#7F5AF0"/>
+    
+    <circle cx="50" cy="120" r="4" fill="#2CB67D"/>
+    <circle cx="200" cy="105" r="4" fill="#2CB67D"/>
+    <circle cx="350" cy="90" r="4" fill="#2CB67D"/>
+    <circle cx="550" cy="60" r="4" fill="#2CB67D"/>
+  </g>
+  
+  <!-- Floating Elements -->
+  <g>
+    <!-- Element 1 -->
+    <circle cx="700" cy="100" r="30" fill="url(#gradient1)" filter="url(#glow)">
+      <animate attributeName="r" values="30;35;30" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Element 2 -->
+    <circle cx="650" cy="300" r="20" fill="url(#gradient2)" filter="url(#glow)">
+      <animate attributeName="r" values="20;25;20" dur="4s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Definitions -->
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7F5AF0" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#2CB67D" stop-opacity="0.1"/>
+    </linearGradient>
+    
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5470" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#7F5AF0" stop-opacity="0.1"/>
+    </linearGradient>
+    
+    <!-- Glow Effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+</svg> 

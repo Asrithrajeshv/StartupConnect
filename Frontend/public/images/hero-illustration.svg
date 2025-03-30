@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Grid -->
+  <defs>
+    <pattern id="grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#7F5AF0" stroke-width="0.5" stroke-opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="256" height="256" fill="url(#grid)"/>
+  
+  <!-- Main Circle -->
+  <circle cx="128" cy="128" r="100" fill="url(#gradient)" filter="url(#glow)"/>
+  
+  <!-- Gradient Definition -->
+  <defs>
+    <radialGradient id="gradient" cx="50%" cy="50%" r="50%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7F5AF0" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#2CB67D" stop-opacity="0.1"/>
+    </radialGradient>
+    
+    <!-- Glow Effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Decorative Elements -->
+  <g transform="translate(128 128)">
+    <!-- Orbiting Elements -->
+    <g className="orbit">
+      <circle cx="70" cy="0" r="8" fill="#7F5AF0" filter="url(#glow)">
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          from="0 0 0"
+          to="360 0 0"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+      </circle>
+    </g>
+    
+    <g className="orbit">
+      <circle cx="-60" cy="0" r="6" fill="#2CB67D" filter="url(#glow)">
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          from="0 0 0"
+          to="-360 0 0"
+          dur="8s"
+          repeatCount="indefinite"
+        />
+      </circle>
+    </g>
+    
+    <g className="orbit">
+      <circle cx="0" cy="80" r="10" fill="#FF5470" filter="url(#glow)">
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          from="0 0 0"
+          to="360 0 0"
+          dur="12s"
+          repeatCount="indefinite"
+        />
+      </circle>
+    </g>
+  </g>
+  
+  <!-- Central Icon -->
+  <g transform="translate(108 108)">
+    <rect width="40" height="40" rx="10" fill="#7F5AF0" filter="url(#glow)"/>
+    <path d="M15 20L25 20M20 15L20 25" stroke="white" stroke-width="2"/>
+  </g>
+</svg> 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="384" height="384" viewBox="0 0 384 384" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Pattern -->
+  <defs>
+    <pattern id="smallGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#7F5AF0" stroke-width="0.5" stroke-opacity="0.1"/>
+    </pattern>
+    <pattern id="grid" width="96" height="96" patternUnits="userSpaceOnUse">
+      <rect width="96" height="96" fill="url(#smallGrid)"/>
+      <path d="M 96 0 L 0 0 0 96" fill="none" stroke="#7F5AF0" stroke-width="1" stroke-opacity="0.2"/>
+    </pattern>
+  </defs>
+  
+  <!-- Main Background -->
+  <rect width="384" height="384" fill="url(#grid)"/>
+  
+  <!-- Decorative Circles -->
+  <circle cx="96" cy="96" r="32" fill="url(#circleGradient1)" filter="url(#glow)"/>
+  <circle cx="288" cy="192" r="48" fill="url(#circleGradient2)" filter="url(#glow)"/>
+  <circle cx="144" cy="288" r="24" fill="url(#circleGradient3)" filter="url(#glow)"/>
+  
+  <!-- Gradients -->
+  <defs>
+    <radialGradient id="circleGradient1" cx="50%" cy="50%" r="50%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7F5AF0" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#7F5AF0" stop-opacity="0"/>
+    </radialGradient>
+    
+    <radialGradient id="circleGradient2" cx="50%" cy="50%" r="50%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2CB67D" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#2CB67D" stop-opacity="0"/>
+    </radialGradient>
+    
+    <radialGradient id="circleGradient3" cx="50%" cy="50%" r="50%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF5470" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#FF5470" stop-opacity="0"/>
+    </radialGradient>
+    
+    <!-- Glow Effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Connecting Lines -->
+  <path d="M96 96L288 192" stroke="#7F5AF0" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="4 4"/>
+  <path d="M288 192L144 288" stroke="#2CB67D" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="4 4"/>
+  <path d="M144 288L96 96" stroke="#FF5470" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="4 4"/>
+</svg> 
