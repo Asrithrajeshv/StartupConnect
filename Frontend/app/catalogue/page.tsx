@@ -814,6 +814,17 @@ export default function StartupCatalogue() {
   const [filteredStartups, setFilteredStartups] = useState(MOCK_STARTUPS)
   const [bookmarkedStartups, setBookmarkedStartups] = useState<string[]>([])
 
+  // Get investor's preferred domain from localStorage or session
+  useEffect(() => {
+    const investorData = localStorage.getItem('investorData')
+    if (investorData) {
+      const { preferredDomain } = JSON.parse(investorData)
+      if (preferredDomain) {
+        setSelectedIndustry(preferredDomain)
+      }
+    }
+  }, [])
+
   // Apply filters
   useEffect(() => {
     let filtered = MOCK_STARTUPS
