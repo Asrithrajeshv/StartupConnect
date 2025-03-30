@@ -1,6 +1,0 @@
-{
-  "buildStage": "compile-server",
-  "buildOptions": {
-    "useBuildWorker": "true"
-  }
-}
