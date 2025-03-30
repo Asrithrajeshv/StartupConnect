@@ -29,6 +29,18 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Separator } from "@/components/ui/separator"
+import {
+  RevenueChart,
+  UsersChart,
+  BurnRateChart,
+  RevenueForecastChart,
+  MarketSegmentsChart,
+  CompetitorLandscapeChart,
+  RunwayChart,
+  MarketSizeChart,
+  RevenueStreamsChart,
+  FiveYearForecastChart,
+} from "@/components/charts"
 
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState("overview")
@@ -43,13 +55,16 @@ export default function DashboardPage() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <Image
-                src="/placeholder.svg?height=40&width=40"
-                alt="Company Logo"
-                width={40}
-                height={40}
-                className="rounded-full border border-[#7F5AF0]/30"
-              />
+              <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-[#7F5AF0] via-[#2CB67D] to-[#FF5470] flex items-center justify-center shadow-lg shadow-[#7F5AF0]/20">
+                <div className="absolute inset-0 bg-black/20 rounded-xl"></div>
+                <div className="relative w-8 h-8 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#7F5AF0]/30 to-[#2CB67D]/30 rounded-lg"></div>
+                  <div className="relative w-4 h-4 rounded-md bg-white/20 flex items-center justify-center">
+                    <div className="w-2 h-2 rounded-sm bg-white/40"></div>
+                  </div>
+                </div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#FF5470] shadow-lg shadow-[#FF5470]/50"></div>
+              </div>
               <h1 className="text-2xl md:text-3xl font-bold text-white">EcoTrack Dashboard</h1>
               <span className="px-2 py-0.5 rounded-full bg-[#2CB67D]/20 text-[#2CB67D] text-xs border border-[#2CB67D]/30">
                 Active
@@ -131,39 +146,7 @@ export default function DashboardPage() {
                     <span className="text-gray-400 text-xs">from last month</span>
                   </div>
                   <div className="mt-4 h-[60px]">
-                    <Image
-                      src="/placeholder.svg?height=60&width=300"
-                      alt="Revenue Chart"
-                      width={300}
-                      height={60}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-black/50 backdrop-blur-sm border-gray-800">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-lg flex items-center">
-                    <Users className="w-4 h-4 mr-2 text-[#2CB67D]" />
-                    Active Users
-                  </CardTitle>
-                  <CardDescription>Total active users this month</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold text-white mb-1">2,845</div>
-                  <div className="flex items-center">
-                    <span className="text-[#2CB67D] text-sm mr-1">+8.7%</span>
-                    <span className="text-gray-400 text-xs">from last month</span>
-                  </div>
-                  <div className="mt-4 h-[60px]">
-                    <Image
-                      src="/placeholder.svg?height=60&width=300"
-                      alt="Users Chart"
-                      width={300}
-                      height={60}
-                      className="w-full h-full object-contain"
-                    />
+                    <RevenueChart />
                   </div>
                 </CardContent>
               </Card>
@@ -183,13 +166,27 @@ export default function DashboardPage() {
                     <span className="text-gray-400 text-xs">from last month</span>
                   </div>
                   <div className="mt-4 h-[60px]">
-                    <Image
-                      src="/placeholder.svg?height=60&width=300"
-                      alt="Burn Rate Chart"
-                      width={300}
-                      height={60}
-                      className="w-full h-full object-contain"
-                    />
+                    <BurnRateChart />
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-black/50 backdrop-blur-sm border-gray-800">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-lg flex items-center">
+                    <TrendingUp className="w-4 h-4 mr-2 text-[#FFD700]" />
+                    Profit
+                  </CardTitle>
+                  <CardDescription>Monthly net profit</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold text-white mb-1">$36,150</div>
+                  <div className="flex items-center">
+                    <span className="text-[#2CB67D] text-sm mr-1">+15.8%</span>
+                    <span className="text-gray-400 text-xs">from last month</span>
+                  </div>
+                  <div className="mt-4 h-[60px]">
+                    <RevenueChart />
                   </div>
                 </CardContent>
               </Card>
@@ -197,20 +194,14 @@ export default function DashboardPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
               <div className="lg:col-span-2">
-                <Card className="bg-black/50 backdrop-blur-sm border-gray-800 h-full">
+                <Card className="bg-black/50 backdrop-blur-sm border-gray-800">
                   <CardHeader>
                     <CardTitle>Revenue Forecast</CardTitle>
                     <CardDescription>Projected revenue for the next 12 months</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="h-[300px]">
-                      <Image
-                        src="/placeholder.svg?height=300&width=800"
-                        alt="Revenue Forecast Chart"
-                        width={800}
-                        height={300}
-                        className="w-full h-full object-contain"
-                      />
+                      <RevenueForecastChart />
                     </div>
                   </CardContent>
                 </Card>
@@ -346,7 +337,7 @@ export default function DashboardPage() {
                     {[
                       {
                         name: "GreenMetrics",
-                        logo: "/placeholder.svg?height=32&width=32",
+                        logo: "https://ui-avatars.com/api/?name=GreenMetrics&background=2CB67D&color=fff&size=32",
                         change: "+2.4%",
                         positive: true,
                         alert: "Launched new feature",
@@ -354,7 +345,7 @@ export default function DashboardPage() {
                       },
                       {
                         name: "EcoSense",
-                        logo: "/placeholder.svg?height=32&width=32",
+                        logo: "https://ui-avatars.com/api/?name=EcoSense&background=7F5AF0&color=fff&size=32",
                         change: "-1.8%",
                         positive: false,
                         alert: "Lost key customer",
@@ -362,17 +353,41 @@ export default function DashboardPage() {
                       },
                       {
                         name: "SustainAI",
-                        logo: "/placeholder.svg?height=32&width=32",
+                        logo: "https://ui-avatars.com/api/?name=SustainAI&background=FF5470&color=fff&size=32",
                         change: "+3.2%",
                         positive: true,
                         alert: "Raised $5M Series A",
                         marketShare: 10.2,
                       },
+                      {
+                        name: "EcoTrack",
+                        logo: "https://ui-avatars.com/api/?name=EcoTrack&background=FFD700&color=fff&size=32",
+                        change: "+1.5%",
+                        positive: true,
+                        alert: "New partnership",
+                        marketShare: 9.8,
+                      },
+                      {
+                        name: "GreenTech",
+                        logo: "https://ui-avatars.com/api/?name=GreenTech&background=2CB67D&color=fff&size=32",
+                        change: "-2.1%",
+                        positive: false,
+                        alert: "Service outage",
+                        marketShare: 7.5,
+                      },
+                      {
+                        name: "EcoFlow",
+                        logo: "https://ui-avatars.com/api/?name=EcoFlow&background=7F5AF0&color=fff&size=32",
+                        change: "+4.2%",
+                        positive: true,
+                        alert: "New product launch",
+                        marketShare: 6.9,
+                      }
                     ].map((competitor, index) => (
                       <div key={index} className="p-3 rounded-lg border border-gray-800 bg-black/30">
                         <div className="flex items-center gap-3 mb-2">
                           <Image
-                            src={competitor.logo || "/placeholder.svg"}
+                            src={competitor.logo}
                             alt={competitor.name}
                             width={32}
                             height={32}
@@ -394,7 +409,12 @@ export default function DashboardPage() {
                         <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
                           <div
                             className={`h-full rounded-full ${
-                              index === 0 ? "bg-[#FF5470]" : index === 1 ? "bg-[#7F5AF0]" : "bg-[#2CB67D]"
+                              index === 0 ? "bg-[#FF5470]" : 
+                              index === 1 ? "bg-[#7F5AF0]" : 
+                              index === 2 ? "bg-[#2CB67D]" :
+                              index === 3 ? "bg-[#FFD700]" :
+                              index === 4 ? "bg-[#2CB67D]" :
+                              "bg-[#7F5AF0]"
                             }`}
                             style={{ width: `${competitor.marketShare}%` }}
                           ></div>
@@ -418,13 +438,7 @@ export default function DashboardPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="h-[300px] mb-4">
-                      <Image
-                        src="/placeholder.svg?height=300&width=800"
-                        alt="Market Size Chart"
-                        width={800}
-                        height={300}
-                        className="w-full h-full object-contain"
-                      />
+                      <MarketSizeChart />
                     </div>
                     <div className="grid grid-cols-3 gap-4">
                       <div className="p-3 rounded-lg bg-[#7F5AF0]/10 border border-[#7F5AF0]/20">
@@ -455,13 +469,7 @@ export default function DashboardPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="h-[180px] mb-2">
-                      <Image
-                        src="/placeholder.svg?height=180&width=300"
-                        alt="Market Segments Chart"
-                        width={300}
-                        height={180}
-                        className="w-full h-full object-contain"
-                      />
+                      <MarketSegmentsChart />
                     </div>
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
@@ -544,13 +552,7 @@ export default function DashboardPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="h-[350px] mb-4">
-                    <Image
-                      src="/placeholder.svg?height=350&width=600"
-                      alt="Competitor Landscape"
-                      width={600}
-                      height={350}
-                      className="w-full h-full object-contain"
-                    />
+                    <CompetitorLandscapeChart />
                   </div>
                   <div className="flex justify-between">
                     <div className="text-xs text-gray-500">
@@ -655,13 +657,7 @@ export default function DashboardPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="h-[400px] mb-4">
-                      <Image
-                        src="/placeholder.svg?height=400&width=1000"
-                        alt="Financial Forecast Chart"
-                        width={1000}
-                        height={400}
-                        className="w-full h-full object-contain"
-                      />
+                      <FiveYearForecastChart />
                     </div>
                     <div className="grid grid-cols-5 gap-4">
                       {[
@@ -702,76 +698,30 @@ export default function DashboardPage() {
                   <CardDescription>Breakdown of projected revenue sources</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex gap-6">
-                    <div className="w-1/2">
-                      <div className="h-[200px] mb-4">
-                        <Image
-                          src="/placeholder.svg?height=200&width=300"
-                          alt="Revenue Streams Chart"
-                          width={300}
-                          height={200}
-                          className="w-full h-full object-contain"
-                        />
+                  <div className="h-[200px] mb-4">
+                    <RevenueStreamsChart />
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center">
+                        <div className="w-3 h-3 rounded-full bg-[#7F5AF0] mr-2"></div>
+                        <span className="text-xs text-gray-300">Subscription</span>
                       </div>
-                      <div className="space-y-2">
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center">
-                            <div className="w-3 h-3 rounded-full bg-[#7F5AF0] mr-2"></div>
-                            <span className="text-xs text-gray-300">Subscription</span>
-                          </div>
-                          <span className="text-xs font-medium text-white">65%</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center">
-                            <div className="w-3 h-3 rounded-full bg-[#2CB67D] mr-2"></div>
-                            <span className="text-xs text-gray-300">Implementation</span>
-                          </div>
-                          <span className="text-xs font-medium text-white">20%</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center">
-                            <div className="w-3 h-3 rounded-full bg-[#FF5470] mr-2"></div>
-                            <span className="text-xs text-gray-300">Consulting</span>
-                          </div>
-                          <span className="text-xs font-medium text-white">15%</span>
-                        </div>
-                      </div>
+                      <span className="text-xs font-medium text-white">65%</span>
                     </div>
-
-                    <div className="w-1/2">
-                      <div className="space-y-4">
-                        <div>
-                          <h4 className="text-sm font-medium text-white mb-1">Subscription Revenue</h4>
-                          <p className="text-xs text-gray-400 mb-2">
-                            Tiered pricing model with monthly recurring revenue from SaaS platform access.
-                          </p>
-                          <div className="flex justify-between text-xs">
-                            <span className="text-gray-500">Current MRR:</span>
-                            <span className="text-white">$65,250</span>
-                          </div>
-                          <div className="flex justify-between text-xs">
-                            <span className="text-gray-500">Projected Growth:</span>
-                            <span className="text-[#2CB67D]">+18% YoY</span>
-                          </div>
-                        </div>
-
-                        <Separator className="bg-gray-800" />
-
-                        <div>
-                          <h4 className="text-sm font-medium text-white mb-1">Implementation Services</h4>
-                          <p className="text-xs text-gray-400 mb-2">
-                            One-time setup and integration fees for new enterprise customers.
-                          </p>
-                          <div className="flex justify-between text-xs">
-                            <span className="text-gray-500">Average Deal Size:</span>
-                            <span className="text-white">$12,500</span>
-                          </div>
-                          <div className="flex justify-between text-xs">
-                            <span className="text-gray-500">Projected Growth:</span>
-                            <span className="text-[#2CB67D]">+12% YoY</span>
-                          </div>
-                        </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center">
+                        <div className="w-3 h-3 rounded-full bg-[#2CB67D] mr-2"></div>
+                        <span className="text-xs text-gray-300">Implementation</span>
                       </div>
+                      <span className="text-xs font-medium text-white">20%</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center">
+                        <div className="w-3 h-3 rounded-full bg-[#FF5470] mr-2"></div>
+                        <span className="text-xs text-gray-300">Consulting</span>
+                      </div>
+                      <span className="text-xs font-medium text-white">15%</span>
                     </div>
                   </div>
                 </CardContent>
@@ -1167,7 +1117,7 @@ export default function DashboardPage() {
                       {[
                         {
                           name: "Green Ventures Capital",
-                          logo: "/placeholder.svg?height=48&width=48",
+                          logo: "https://ui-avatars.com/api/?background=2CB67D&color=fff&size=48&bold=true&length=1&name=G",
                           type: "Venture Capital",
                           focus: "Sustainability, CleanTech",
                           stage: "Seed, Series A",
@@ -1177,7 +1127,7 @@ export default function DashboardPage() {
                         },
                         {
                           name: "Impact Horizon Fund",
-                          logo: "/placeholder.svg?height=48&width=48",
+                          logo: "https://ui-avatars.com/api/?background=7F5AF0&color=fff&size=48&bold=true&length=1&name=I",
                           type: "Impact Investor",
                           focus: "ESG, Sustainability",
                           stage: "Seed, Series A",
@@ -1187,7 +1137,7 @@ export default function DashboardPage() {
                         },
                         {
                           name: "TechSustain Partners",
-                          logo: "/placeholder.svg?height=48&width=48",
+                          logo: "https://ui-avatars.com/api/?background=FF5470&color=fff&size=48&bold=true&length=1&name=T",
                           type: "Venture Capital",
                           focus: "Enterprise SaaS, Sustainability",
                           stage: "Series A, Series B",
@@ -1197,7 +1147,7 @@ export default function DashboardPage() {
                         },
                         {
                           name: "Future Planet Capital",
-                          logo: "/placeholder.svg?height=48&width=48",
+                          logo: "https://ui-avatars.com/api/?background=FFD700&color=fff&size=48&bold=true&length=1&name=F",
                           type: "Corporate VC",
                           focus: "Climate Tech, AI",
                           stage: "Seed, Series A",
@@ -1212,7 +1162,7 @@ export default function DashboardPage() {
                         >
                           <div className="flex items-center gap-4 mb-3">
                             <Image
-                              src={investor.logo || "/placeholder.svg"}
+                              src={investor.logo}
                               alt={investor.name}
                               width={48}
                               height={48}
@@ -1354,21 +1304,21 @@ export default function DashboardPage() {
                           company: "Green Ventures Capital",
                           time: "2 hours ago",
                           action: "Viewed your profile",
-                          avatar: "/placeholder.svg?height=32&width=32",
+                          avatar: "https://ui-avatars.com/api/?background=2CB67D&color=fff&size=32&bold=true&length=1&name=S",
                         },
                         {
                           name: "Michael Rodriguez",
                           company: "TechSustain Partners",
                           time: "Yesterday",
                           action: "Downloaded pitch deck",
-                          avatar: "/placeholder.svg?height=32&width=32",
+                          avatar: "https://ui-avatars.com/api/?background=FF5470&color=fff&size=32&bold=true&length=1&name=M",
                         },
                         {
                           name: "Jennifer Wu",
                           company: "Impact Horizon Fund",
                           time: "2 days ago",
                           action: "Requested financials",
-                          avatar: "/placeholder.svg?height=32&width=32",
+                          avatar: "https://ui-avatars.com/api/?background=7F5AF0&color=fff&size=32&bold=true&length=1&name=J",
                         },
                       ].map((activity, index) => (
                         <div
@@ -1376,7 +1326,7 @@ export default function DashboardPage() {
                           className="flex items-start gap-3 p-3 rounded-lg border border-gray-800 bg-black/30"
                         >
                           <Image
-                            src={activity.avatar || "/placeholder.svg"}
+                            src={activity.avatar}
                             alt={activity.name}
                             width={32}
                             height={32}
@@ -1535,21 +1485,21 @@ export default function DashboardPage() {
                             <div className="flex items-center gap-2">
                               <div className="flex -space-x-2">
                                 <Image
-                                  src="/placeholder.svg?height=24&width=24"
+                                  src="https://ui-avatars.com/api/?background=2CB67D&color=fff&size=24&bold=true&length=1&name=A"
                                   alt="Investor"
                                   width={24}
                                   height={24}
                                   className="rounded-full border border-black"
                                 />
                                 <Image
-                                  src="/placeholder.svg?height=24&width=24"
+                                  src="https://ui-avatars.com/api/?background=7F5AF0&color=fff&size=24&bold=true&length=1&name=B"
                                   alt="Investor"
                                   width={24}
                                   height={24}
                                   className="rounded-full border border-black"
                                 />
                                 <Image
-                                  src="/placeholder.svg?height=24&width=24"
+                                  src="https://ui-avatars.com/api/?background=FF5470&color=fff&size=24&bold=true&length=1&name=C"
                                   alt="Investor"
                                   width={24}
                                   height={24}
@@ -1647,13 +1597,7 @@ export default function DashboardPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="h-[180px] mb-4">
-                      <Image
-                        src="/placeholder.svg?height=180&width=300"
-                        alt="Runway Chart"
-                        width={300}
-                        height={180}
-                        className="w-full h-full object-contain"
-                      />
+                      <RunwayChart />
                     </div>
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
