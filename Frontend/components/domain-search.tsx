@@ -9,6 +9,7 @@ import { Slider } from "@/components/ui/slider"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { ArrowRight, Search, Globe, TrendingUp, DollarSign, Users, Target } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 interface Startup {
   name: string
@@ -40,6 +41,7 @@ export function DomainSearch() {
   const [selectedIndustries, setSelectedIndustries] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [startups, setStartups] = useState<Startup[]>([])
+  const router = useRouter()
 
   const industries = [
     "Technology",
@@ -73,76 +75,145 @@ export function DomainSearch() {
   const searchStartups = async () => {
     setIsLoading(true)
     try {
-      const prompt = `Find 10 promising startups that match the following criteria:
-        - Industries: ${selectedIndustries.join(", ")}
-        - Investment Range: ${formatCurrency(searchParams.minInvestment)} - ${formatCurrency(searchParams.maxInvestment)}
-        - Risk Tolerance: ${searchParams.riskTolerance}
-        - Growth Stage: ${searchParams.growthStage}
-        - Market Size: ${searchParams.marketSize}
-
-        For each startup, provide:
-        1. Name and brief description
-        2. Industry
-        3. Funding needed
-        4. Market size
-        5. Growth potential
-        6. Risk level
-        7. Market analysis
-        8. SWOT analysis
-
-        Format the response as a JSON array of startup objects with the following structure:
-        [
-          {
-            "name": "string",
-            "description": "string",
-            "industry": "string",
-            "fundingNeeded": "string",
-            "marketSize": "string",
-            "growthPotential": "string",
-            "riskLevel": "string",
-            "marketAnalysis": "string",
-            "swotAnalysis": {
-              "strengths": ["string"],
-              "weaknesses": ["string"],
-              "opportunities": ["string"],
-              "threats": ["string"]
-            }
-          }
-        ]`
-
-      const response = await fetch("/api/gemini", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      // Get the mock startups data from the catalogue page
+      const mockStartups = [
+        // Technology Domain Startups
+        {
+          id: "1",
+          name: "AI Code Assistant",
+          logo: "/placeholder.svg?height=80&width=80",
+          industry: "Technology",
+          description: "AI-powered code completion and debugging tool for developers",
+          fundingGoal: 800000,
+          currentFunding: 480000,
+          riskLevel: "Moderate",
+          growthScore: 89,
+          investorInterest: 52,
+          aiInsights: "Strong developer demand for AI coding tools. Experienced team from major tech companies.",
+          tags: ["AI", "Developer Tools", "Code Generation", "Machine Learning"],
         },
-        body: JSON.stringify({ prompt }),
+        // Healthcare Domain Startups
+        {
+          id: "2",
+          name: "MedAI Assistant",
+          logo: "/placeholder.svg?height=80&width=80",
+          industry: "Healthcare",
+          description: "AI-powered medical diagnosis assistant for healthcare professionals",
+          fundingGoal: 900000,
+          currentFunding: 540000,
+          riskLevel: "High",
+          growthScore: 86,
+          investorInterest: 46,
+          aiInsights: "Strong potential for healthcare cost reduction. Experienced medical team.",
+          tags: ["Healthcare", "AI", "Diagnostics", "Medical Tech"],
+        },
+        // Finance Domain Startups
+        {
+          id: "3",
+          name: "FinAI Advisor",
+          logo: "/placeholder.svg?height=80&width=80",
+          industry: "Finance",
+          description: "AI-powered personal finance management and investment advisor",
+          fundingGoal: 750000,
+          currentFunding: 450000,
+          riskLevel: "Moderate",
+          growthScore: 88,
+          investorInterest: 52,
+          aiInsights: "Growing demand for personalized financial advice. Strong user base.",
+          tags: ["FinTech", "AI", "Personal Finance", "Investment"],
+        },
+        // Education Domain Startups
+        {
+          id: "4",
+          name: "EduAI Platform",
+          logo: "/placeholder.svg?height=80&width=80",
+          industry: "Education",
+          description: "AI-powered personalized learning platform with adaptive content",
+          fundingGoal: 600000,
+          currentFunding: 360000,
+          riskLevel: "Moderate",
+          growthScore: 88,
+          investorInterest: 51,
+          aiInsights: "Growing demand for personalized education. Strong engagement metrics.",
+          tags: ["EdTech", "AI", "Personalization", "Learning"],
+        },
+        // E-commerce Domain Startups
+        {
+          id: "5",
+          name: "ShopAI",
+          logo: "/placeholder.svg?height=80&width=80",
+          industry: "E-commerce",
+          description: "AI-powered product recommendation and inventory management system",
+          fundingGoal: 700000,
+          currentFunding: 420000,
+          riskLevel: "Moderate",
+          growthScore: 88,
+          investorInterest: 52,
+          aiInsights: "Strong ROI for retailers. Proven conversion rate improvement.",
+          tags: ["E-commerce", "AI", "Recommendations", "Retail"],
+        }
+      ]
+
+      // Filter startups based on selected criteria
+      let filteredStartups = mockStartups.filter(startup => {
+        // Industry filter
+        if (selectedIndustries.length > 0 && !selectedIndustries.includes(startup.industry)) {
+          return false
+        }
+
+        // Risk level filter
+        if (searchParams.riskTolerance === "conservative" && startup.riskLevel !== "Low") {
+          return false
+        }
+        if (searchParams.riskTolerance === "aggressive" && startup.riskLevel === "Low") {
+          return false
+        }
+
+        // Funding range filter
+        const funding = startup.fundingGoal
+        if (funding < searchParams.minInvestment || funding > searchParams.maxInvestment) {
+          return false
+        }
+
+        // Growth stage filter
+        if (searchParams.growthStage === "early" && startup.growthScore < 80) {
+          return false
+        }
+        if (searchParams.growthStage === "growth" && startup.growthScore < 90) {
+          return false
+        }
+
+        return true
       })
 
-      if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`)
-      }
-
-      const data = await response.json()
-      
-      if (!data.candidates || !data.candidates[0] || !data.candidates[0].content || !data.candidates[0].content.parts || !data.candidates[0].content.parts[0]) {
-        throw new Error("Invalid API response structure")
-      }
-
-      const responseText = data.candidates[0].content.parts[0].text
-      try {
-        const startups = JSON.parse(responseText)
-        if (!Array.isArray(startups)) {
-          throw new Error("Response is not an array of startups")
+      // Transform the data to match the expected format
+      const transformedStartups = filteredStartups.map(startup => ({
+        name: startup.name,
+        description: startup.description,
+        industry: startup.industry,
+        fundingNeeded: `$${startup.fundingGoal.toLocaleString()}`,
+        marketSize: startup.growthScore > 90 ? "Large" : startup.growthScore > 80 ? "Medium" : "Small",
+        growthPotential: startup.growthScore > 90 ? "High" : startup.growthScore > 80 ? "Medium" : "Low",
+        riskLevel: startup.riskLevel,
+        marketAnalysis: startup.aiInsights,
+        swotAnalysis: {
+          strengths: ["Strong technical team", "Growing market demand", "Innovative solution"],
+          weaknesses: ["Early stage", "Limited market presence"],
+          opportunities: ["Market expansion", "Partnership potential"],
+          threats: ["Competition", "Market uncertainty"]
         }
-        setStartups(startups)
-      } catch (parseError) {
-        console.error("Error parsing JSON response:", parseError)
-        throw new Error("Failed to parse startup data")
-      }
+      }))
+
+      // Store results in localStorage
+      localStorage.setItem('searchResults', JSON.stringify(transformedStartups))
+      
+      // Close the dialog
+      setIsOpen(false)
+      
+      // Redirect to search results page
+      router.push('/investor/search-results')
     } catch (error) {
       console.error("Error searching startups:", error)
-      // You might want to show an error message to the user here
-      setStartups([])
     } finally {
       setIsLoading(false)
     }

@@ -27,6 +27,7 @@ export default function InvestorSignupPage() {
     riskTolerance: "moderate",
     roiTimeframe: "",
     linkedinProfile: "",
+    preferredDomain: "",
   })
 
   const [selectedIndustries, setSelectedIndustries] = useState<string[]>([])
@@ -94,10 +95,17 @@ export default function InvestorSignupPage() {
 
   const handleSignupSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // ... your existing signup logic ...
-
+    
     try {
-      // After successful signup
+      // Store the selected domain preference
+      const selectedDomain = selectedIndustries.length > 0 ? selectedIndustries[0] : ""
+      const updatedFormData = { ...formData, preferredDomain: selectedDomain }
+      
+      // Store investor data in localStorage
+      localStorage.setItem('investorData', JSON.stringify(updatedFormData))
+      
+      // Here you would typically make an API call to save the user data
+      // For now, we'll just redirect to the marketplace
       router.push('/investor/marketplace')
     } catch (error) {
       console.error('Signup failed:', error)
