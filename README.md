@@ -5,6 +5,8 @@
 ## Introduction
 Welcome to our AI-powered startup loan and collaboration platform! This innovative solution is designed to support startups by providing financial assistance, data-driven forecasting, and strategic collaboration opportunities.
 
+Demo Video link:- https://drive.google.com/file/d/1EE7b0wM9oxd0wknauTFMSqdI24l5kqmm/view
+
 ## Features
 - AI-driven loan approval system
 - Automated revenue & financial forecasting
