@@ -282,7 +282,93 @@ export function DemoPreview() {
           />
         ))}
       </div>
+      {/* Floating download button that generates PPTX from the demo tabs */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <DownloadPptButton tabs={tabs} />
+      </div>
     </div>
+  )
+}
+
+function DownloadPptButton({ tabs }: { tabs: { title: string; content: any }[] }) {
+  const [isDownloading, setIsDownloading] = useState(false)
+
+  const generatePpt = async () => {
+    setIsDownloading(true)
+    try {
+
+      // Prompt the user for the project idea (title/name). Require non-empty input.
+      let projectIdea = window.prompt('Enter the project / startup name (used to generate the pitch deck):', '') || ''
+      projectIdea = projectIdea.trim()
+      if (!projectIdea) {
+        alert('Please provide a project name to generate the pitch deck.')
+        setIsDownloading(false)
+        return
+      }
+
+      const res = await fetch('/api/ppt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ projectIdea }),
+      })
+
+      if (!res.ok) {
+        const errorData = await res.json()
+        throw new Error(`Server failed to generate slides: ${errorData.details || errorData.error || 'Unknown error'}`)
+      }
+
+      const data = await res.json()
+      if (data?.error) {
+        throw new Error(`API Error: ${data.details || data.error}${data.cause ? ` (${data.cause})` : ''}`)
+      }
+
+      const slides: { title: string; content: string }[] = data.slides || []
+
+      if (!slides.length) throw new Error('No slides returned from generator')
+
+      // dynamically import PPTX generator
+      const PptxGenJS = (await import('pptxgenjs')).default
+      const pptx = new PptxGenJS()
+      pptx.author = 'StartupConnect'
+      pptx.company = 'StartupConnect'
+
+      for (const s of slides) {
+        const slide = pptx.addSlide()
+        slide.addText(String(s.title || ''), { x: 0.5, y: 0.3, fontSize: 28, bold: true, color: '363636' })
+        // s.content is expected to be bullet text (possibly with newline separators)
+        const content = typeof s.content === 'string' ? s.content : String(s.content || '')
+        slide.addText(content.replace(/\t/g, ''), {
+          x: 0.5,
+          y: 1.2,
+          fontSize: 14,
+          color: '444444',
+          wrap: true,
+          w: '80%'
+        })
+      }
+
+      await pptx.writeFile({ fileName: 'startup-pitch-deck.pptx' })
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('Failed to generate PPT', err)
+      // user feedback
+      // Use alert for simplicity in this UI
+      // In the app we could surface a nicer toast
+      alert('Failed to generate PPT. See console for details.')
+    } finally {
+      setIsDownloading(false)
+    }
+  }
+
+  return (
+    <Button
+      onClick={generatePpt}
+      className="rounded-full bg-gradient-to-r from-[#7F5AF0] to-[#2CB67D] hover:shadow-[0_0_25px_rgba(127,90,240,0.5)] transition-all duration-300 flex items-center"
+      disabled={isDownloading}
+    >
+      <Download className="h-4 w-4 mr-2" />
+      {isDownloading ? 'Generating...' : 'Download Pitch Deck'}
+    </Button>
   )
 }
 

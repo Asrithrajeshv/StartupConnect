@@ -208,5 +208,21 @@ export default function InvestPage({ params }: { params: { id: string } }) {
                         <span className="text-sm font-medium text-white">${calculatePotentialReturn(19500000).toLocaleString()}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-400">Moderate Exit (5\
-
+                        <span className="text-sm text-gray-400">Moderate Exit (5x)</span>
+                        <span className="text-sm font-medium text-white">${calculatePotentialReturn(32500000).toLocaleString()}</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-400">Aggressive Exit (10x)</span>
+                        <span className="text-sm font-medium text-white">${calculatePotentialReturn(65000000).toLocaleString()}</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  )
+}
